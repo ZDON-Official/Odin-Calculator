@@ -1,6 +1,9 @@
 const nums_btn = document.querySelectorAll(".num-btns");
 const exp_btn = document.querySelectorAll(".exp");
 const screen = document.getElementById("screen");
+const sign_swt = document.getElementById("sign_swt");
+const clear = document.getElementById("clear");
+const equal = document.getElementById("equal");
 
 var first_num = "";
 var second_num = "";
@@ -12,29 +15,20 @@ nums_btn.forEach((btn) => {
       first_num += btn.value;
       screen.innerHTML = first_num;
 
-      console.log(`first num is ${first_num} with type ${typeof first_num}`);
+      // console.log(`first num is ${first_num} with type ${typeof first_num}`);
     } else {
       second_num += btn.value;
       screen.innerHTML = second_num;
 
-      console.log(`second num is ${second_num} with type ${typeof second_num}`);
+      // console.log(`second num is ${second_num} with type ${typeof second_num}`);
     }
   });
 });
 
 // Clears the display and resets everything
-const clear = document.getElementById("clear");
 
 clear.addEventListener("click", () => {
-  screen.innerHTML = 0;
-  first_num = "";
-  second_num = "";
-  first_num_bool = false;
-  eval = false;
-  ign_btn_pressed = false;
-
-  console.log("cleared");
-  console.log(`${first_num} ${second_num}`);
+  clear_display();
 });
 
 // sign buttons pressed
@@ -60,8 +54,6 @@ exp_btn.forEach((expression) => {
     }
   });
 });
-
-const equal = document.getElementById("equal");
 
 equal.addEventListener("click", () => {
   if (first_num != "") {
@@ -97,6 +89,7 @@ function evaluate(exp) {
       first_num = parseFloat(first_num.toFixed(4));
       second_num = "";
     }
+    // ÷
     if (exp === "/") {
       if (parseFloat(second_num) === 0) {
         return "(⩺_⩹)";
@@ -113,21 +106,32 @@ function evaluate(exp) {
   return first_num;
 }
 
+function clear_display() {
+  screen.innerHTML = 0;
+  first_num = "";
+  second_num = "";
+  first_num_bool = false;
+  eval = false;
+  sign_btn_pressed = false;
+}
+
 // for changing the sign
 
-const sign_swt = document.getElementById("sign_swt");
-
 sign_swt.addEventListener("click", () => {
+  screen.innerHTML = switch_sign();
+});
+
+function switch_sign() {
   if (first_num != "") {
     if (first_num_bool) {
       // first num selected already
       if (second_num === "0") {
-        return;
+        return "0";
       }
       second_num = second_num.includes("-")
         ? second_num.substring(1)
         : "-" + second_num;
-      screen.innerHTML = second_num;
+      return second_num;
     } else {
       // change sign of first num
 
@@ -138,7 +142,9 @@ sign_swt.addEventListener("click", () => {
       first_num = first_num.includes("-")
         ? first_num.substring(1)
         : "-" + first_num;
-      screen.innerHTML = first_num;
+      return first_num;
     }
+  } else {
+    return "0";
   }
-});
+}

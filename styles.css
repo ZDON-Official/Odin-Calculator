@@ -27,7 +27,6 @@ body{
 
 button:hover{
     cursor: pointer;
-    background-image: linear-gradient(#d0d8de5f 0 0);
 }
 
 .container{
@@ -100,16 +99,32 @@ button:hover{
 #clear{
     width: 150px;
 }
+#clear:hover{
+    background-color: red;
+    color: aliceblue;
+    border: none;
+}
 /* #clear, */
 #zero{
     width: 225px;
 }
 
-#equal{
+#equal:hover, #equal:focus{
     background-color: var(--accent);
     color: aliceblue;
     border: none;
+
 }
+
+.num-btns:hover{
+    background-image: linear-gradient(#d0d8de5f 0 0);
+}
+
+.exp:hover, #sign_swt:hover{
+    background-color: aquamarine;
+    border: none;
+}
+
 
 a{
     text-decoration: none;

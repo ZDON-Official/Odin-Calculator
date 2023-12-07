@@ -31,8 +31,19 @@ clear.addEventListener("click", () => {
   clear_display();
 });
 
-// sign buttons pressed
+// for changing the sign
 
+sign_swt.addEventListener("click", () => {
+  if (first_num_bool) {
+    second_num = switch_sign(second_num);
+    screen.innerHTML = second_num;
+  } else {
+    first_num = switch_sign(first_num);
+    screen.innerHTML = first_num;
+  }
+});
+
+// sign buttons pressed
 /*
   ! if a sign button is already pressed, then pressing it again should evaluate the first button [FIXED]
 */
@@ -42,68 +53,60 @@ var sign_btn_pressed = false;
 
 exp_btn.forEach((expression) => {
   expression.addEventListener("click", () => {
+    // evaluate()
+
     if (first_num != "") {
       if (sign_btn_pressed) {
-        screen.innerHTML = evaluate(sign);
+        screen.innerHTML = operate(sign, first_num, second_num);
       }
-      console.log("sign btn pressed");
       sign = expression.innerHTML;
       sign_btn_pressed = true;
       first_num_bool = true;
-      eval = true;
     }
   });
 });
 
 equal.addEventListener("click", () => {
-  if (first_num != "") {
-    screen.innerHTML = evaluate(sign);
-  }
+  screen.innerHTML = operate(sign, first_num, second_num);
 });
+
+function evaluate() {
+  if (first_num_bool) {
+    second_num = screen.innerHTML;
+  } else {
+    first_num = screen.innerHTML;
+    first_num_bool = true;
+  }
+
+  
+
+  sign = expression.innerHTML;
+  return operate(sign, first_num, second_num);
+}
 
 // To do the calculations
 
-var eval = false;
+function operate(exp, num1, num2) {
+  // console.log(`evaluating ${(exp, num1, num2)}`);
 
-function evaluate(exp) {
-  console.log(`evaluating ${exp}`);
+  num1 = Number(num1);
+  num2 = Number(num2);
 
-  first_num = parseInt(first_num);
-
-  if (eval) {
-    second_num = second_num === "" ? first_num : parseInt(second_num);
-
-    console.log(`second is ${second_num}`);
-
-    if (exp === "+") {
-      first_num = first_num + parseInt(second_num);
-      second_num = "";
-      // return first_num;
-    }
-    if (exp === "-") {
-      first_num = first_num - parseInt(second_num);
-      second_num = "";
-    }
-    if (exp === "x") {
-      first_num = first_num * parseFloat(second_num);
-      first_num = parseFloat(first_num.toFixed(4));
-      second_num = "";
-    }
-    // ÷
-    if (exp === "/") {
-      if (parseFloat(second_num) === 0) {
+  switch (exp) {
+    case "+":
+      return num1 + num2;
+    case "-":
+      return num1 - num2;
+    case "x":
+      return num1 * num2;
+    case "÷":
+      if (num2 === 0) {
         return "(⩺_⩹)";
       }
-      first_num = first_num / parseFloat(second_num);
-      first_num = parseFloat(first_num.toFixed(8));
-      second_num = "";
-    }
-    sign_btn_pressed = false;
+      return num1 / num2;
+    default:
+      return 0;
   }
-
-  // first_num = parseInt();
-
-  return first_num;
 }
 
 function clear_display() {
@@ -114,22 +117,6 @@ function clear_display() {
   eval = false;
   sign_btn_pressed = false;
 }
-
-// for changing the sign
-
-sign_swt.addEventListener("click", () => {
-  let input = first_num_bool ? second_num : first_num;
-
-  if (first_num_bool) {
-    second_num = switch_sign(second_num);
-    screen.innerHTML = second_num;
-  } else {
-    first_num = switch_sign(first_num);
-    screen.innerHTML = first_num;
-  }
-
-  screen.innerHTML = switch_sign(input);
-});
 
 function switch_sign(input) {
   let temp;

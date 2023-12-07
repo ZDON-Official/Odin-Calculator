@@ -1,3 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+:root{
+    --bg_color: white;
+    --primary_color: aliceblue;
+    --accent: #763a3a;
+    /* --accent: #bfa181; */
+}
+
 body * {
     margin: 0;
     padding: 0;
@@ -5,14 +14,20 @@ body * {
 
 body{
     background-color: rgb(82, 75, 95);
+    background-color: #fdfdfd;
+
+    font-family: "Roboto", sans-serif;
+
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+    height: 98vh;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 button:hover{
     cursor: pointer;
+    background-image: linear-gradient(#d0d8de5f 0 0);
 }
 
 .container{
@@ -26,20 +41,22 @@ button:hover{
     text-align: right;
     align-items: center;
     justify-content: right;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 2px;
-    width: 200px;
+    box-shadow: 0px 2px 4px rgb(73, 73, 73);
+    width: 300px;
     height: 50px;
     box-sizing: border-box;
     margin: 0%;
     padding: 0px 5px;
     margin-bottom: 10px;
     font-size: 32px;
+    color: var(--accent);
 }
 
 .btn-container{
     /* border: 1px solid red; */
-    width: 200px;
+    /* width: 300px; */
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -47,6 +64,8 @@ button:hover{
     align-items: center;
     margin: 0px;
     padding: 0%;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 4px rgb(73, 73, 73);
 }
 .btn-container *{
     padding: 0%;
@@ -67,11 +86,27 @@ button:hover{
 
 .btn-rows button{
     height: 100%;
-    width: 50px;
+    width: 75px;
     margin: 0;
     padding: 0;
+    font-size: 18px;
+    background-color: #f0f8ff;
+    /* border-radius: 2px; */
+    outline: none;
+    border: 0.01px solid #dbe3ea;
 }
 
-#clear, #zero{
+
+#clear{
     width: 150px;
+}
+/* #clear, */
+#zero{
+    width: 225px;
+}
+
+#equal{
+    background-color: var(--accent);
+    color: aliceblue;
+    border: none;
 }

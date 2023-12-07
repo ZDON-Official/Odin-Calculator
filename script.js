@@ -94,7 +94,7 @@ function evaluate(exp) {
       first_num = first_num - parseInt(second_num);
       second_num = "";
     }
-    if (exp === "*") {
+    if (exp === "x") {
       first_num = first_num * parseFloat(second_num);
       first_num = parseFloat(first_num.toFixed(4));
       second_num = "";
@@ -111,3 +111,6 @@ function evaluate(exp) {
 
   return first_num;
 }
+
+
+// for changing the sign 

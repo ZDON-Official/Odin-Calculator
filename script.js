@@ -112,5 +112,32 @@ function evaluate(exp) {
   return first_num;
 }
 
+// for changing the sign
 
-// for changing the sign 
+const sign_swt = document.getElementById("sign_swt");
+
+sign_swt.addEventListener("click", () => {
+  if (first_num != "") {
+    if (first_num_bool) {
+      // first num selected already
+      if (second_num === "0") {
+        return;
+      }
+      second_num = second_num.includes("-")
+        ? second_num.substring(1)
+        : "-" + second_num;
+      screen.innerHTML = second_num;
+    } else {
+      // change sign of first num
+
+      if (first_num === "0") {
+        return;
+      }
+
+      first_num = first_num.includes("-")
+        ? first_num.substring(1)
+        : "-" + first_num;
+      screen.innerHTML = first_num;
+    }
+  }
+});

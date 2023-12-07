@@ -71,8 +71,6 @@ equal.addEventListener("click", () => {
 
 // To do the calculations
 
-// TODO - mult not fully working
-
 var eval = false;
 
 function evaluate(exp) {
@@ -100,6 +98,9 @@ function evaluate(exp) {
       second_num = "";
     }
     if (exp === "/") {
+      if (parseFloat(second_num) === 0) {
+        return "(⩺_⩹)";
+      }
       first_num = first_num / parseFloat(second_num);
       first_num = parseFloat(first_num.toFixed(8));
       second_num = "";

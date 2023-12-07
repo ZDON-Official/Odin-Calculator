@@ -118,33 +118,26 @@ function clear_display() {
 // for changing the sign
 
 sign_swt.addEventListener("click", () => {
-  screen.innerHTML = switch_sign();
+  let input = first_num_bool ? second_num : first_num;
+
+  if (first_num_bool) {
+    second_num = switch_sign(second_num);
+    screen.innerHTML = second_num;
+  } else {
+    first_num = switch_sign(first_num);
+    screen.innerHTML = first_num;
+  }
+
+  screen.innerHTML = switch_sign(input);
 });
 
-function switch_sign() {
-  if (first_num != "") {
-    if (first_num_bool) {
-      // first num selected already
-      if (second_num === "0") {
-        return "0";
-      }
-      second_num = second_num.includes("-")
-        ? second_num.substring(1)
-        : "-" + second_num;
-      return second_num;
-    } else {
-      // change sign of first num
-
-      if (first_num === "0") {
-        return;
-      }
-
-      first_num = first_num.includes("-")
-        ? first_num.substring(1)
-        : "-" + first_num;
-      return first_num;
-    }
-  } else {
-    return "0";
+function switch_sign(input) {
+  let temp;
+  if (input === "" || input === "0") {
+    return 0;
   }
+
+  temp = input.includes("-") ? input.substring(1) : "-" + input;
+
+  return temp;
 }

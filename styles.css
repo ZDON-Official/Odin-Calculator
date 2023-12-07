@@ -109,7 +109,7 @@ button:hover{
     width: 225px;
 }
 
-#equal:hover, #equal:focus{
+#equal:hover{
     background-color: var(--accent);
     color: aliceblue;
     border: none;

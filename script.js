@@ -35,132 +35,58 @@ clear.addEventListener("click", () => {
   console.log(`${first_num} ${second_num}`);
 });
 
+// sign buttons pressed
+
+var sign = "";
+
 exp_btn.forEach((expression) => {
   expression.addEventListener("click", () => {
-    first_num_bool = true;
-
-    if (expression.innerHTML === "+") {
-      console.log("add");
-
-      if (eval) {
-        first_num = first_num + parseInt(second_num);
-        second_num = "";
-        screen.innerHTML = first_num;
-      }
-
-      first_num = parseInt(first_num);
-
-      eval = true;
-    }
-
-    if (expression.innerHTML === "-") {
-      console.log("add");
-
-      if (eval) {
-        first_num = first_num - parseInt(second_num);
-        second_num = "";
-        screen.innerHTML = first_num;
-      }
-
-      first_num = parseInt(first_num);
-
-      eval = true;
-    }
-
-    if (expression.innerHTML === "*") {
-      console.log("add");
-
-      if (eval) {
-        first_num = first_num * parseInt(second_num);
-        second_num = "";
-        screen.innerHTML = first_num;
-      }
-
-      first_num = parseInt(first_num);
-
-      eval = true;
-    }
-
-    if (expression.innerHTML === "/") {
-      console.log("add");
-
-      if (eval) {
-        first_num = first_num / parseInt(second_num);
-        second_num = "";
-        screen.innerHTML = first_num;
-      }
-
-      first_num = parseInt(first_num);
-
-      eval = true;
-    }
+    sign = expression.innerHTML;
+    screen.innerHTML = evaluate(sign);
   });
 });
 
 const equal = document.getElementById("equal");
 
-equal.addEventListener("click", () => {});
+equal.addEventListener("click", () => {
+  screen.innerHTML = evaluate(sign);
+});
 
 // To do the calculations
 
 var eval = false;
 
 function evaluate(exp) {
+  console.log(`evaluating ${exp}`);
+
   first_num_bool = true;
 
-  if (exp === "+") {
-    console.log("add");
-
-    if (eval) {
+  if (eval) {
+    if (exp === "+") {
       first_num = first_num + parseInt(second_num);
       second_num = "";
-      screen.innerHTML = first_num;
+      return first_num;
     }
-
-    first_num = parseInt(first_num);
-
-    eval = true;
-  }
-
-  if (exp === "-") {
-    console.log("add");
-
-    if (eval) {
+    if (exp === "-") {
       first_num = first_num - parseInt(second_num);
       second_num = "";
-      screen.innerHTML = first_num;
+      return first_num;
     }
-
-    first_num = parseInt(first_num);
-
-    eval = true;
-  }
-
-  if (exp === "*") {
-    console.log("add");
-
-    if (eval) {
+    if (exp === "*") {
       first_num = first_num * parseInt(second_num);
       second_num = "";
-      screen.innerHTML = first_num;
+      return first_num;
     }
-
-    first_num = parseInt(first_num);
-
-    eval = true;
-  }
-
-  if (exp === "/") {
-    console.log("add");
-
-    if (eval) {
+    if (exp === "/") {
       first_num = first_num / parseInt(second_num);
       second_num = "";
-      screen.innerHTML = first_num;
+      return first_num;
     }
-
-    first_num = parseInt(first_num);
-
-    eval = true;
   }
+
+  first_num = parseInt(first_num);
+
+  eval = true;
+
+  return first_num;
 }

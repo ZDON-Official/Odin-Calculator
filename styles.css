@@ -10,6 +10,11 @@ body{
     align-items: center;
     justify-content: center;
 }
+
+button:hover{
+    cursor: pointer;
+}
+
 .container{
 
     /* border: 2px solid black; */
@@ -24,11 +29,12 @@ body{
     border: 1px solid black;
     border-radius: 2px;
     width: 200px;
-    height: 30px;
+    height: 50px;
     box-sizing: border-box;
     margin: 0%;
     padding: 0px 5px;
     margin-bottom: 10px;
+    font-size: 32px;
 }
 
 .btn-container{
@@ -46,4 +52,26 @@ body{
     padding: 0%;
     margin: 0%;
     /* flex: 1 0 auto; */
+}
+
+.btn-rows{
+    /* border: 1px solid gold; */
+    width: 100%;
+    flex: 1 0 auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+
+}
+
+.btn-rows button{
+    height: 100%;
+    width: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+#clear, #zero{
+    width: 150px;
 }

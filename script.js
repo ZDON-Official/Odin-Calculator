@@ -8,22 +8,21 @@ const equal = document.getElementById("equal");
 var first_num = "";
 var second_num = "";
 var first_num_bool = false;
+var sign = null;
 
 nums_btn.forEach((btn) => {
   btn.addEventListener("click", () => {
-    if (first_num_bool === false) {
-      first_num += btn.value;
-      screen.innerHTML = first_num;
-
-      // console.log(`first num is ${first_num} with type ${typeof first_num}`);
-    } else {
-      second_num += btn.value;
-      screen.innerHTML = second_num;
-
-      // console.log(`second num is ${second_num} with type ${typeof second_num}`);
-    }
+    add_to_display(btn.value);
   });
 });
+
+function add_to_display(val) {
+  if (screen.innerHTML === "0" || first_num_bool) {
+    screen.innerHTML = val;
+  } else {
+    screen.innerHTML += val;
+  }
+}
 
 // Clears the display and resets everything
 
@@ -48,29 +47,23 @@ sign_swt.addEventListener("click", () => {
   ! if a sign button is already pressed, then pressing it again should evaluate the first button [FIXED]
 */
 
-var sign = "";
 var sign_btn_pressed = false;
 
 exp_btn.forEach((expression) => {
   expression.addEventListener("click", () => {
-    // evaluate()
-
-    if (first_num != "") {
-      if (sign_btn_pressed) {
-        screen.innerHTML = operate(sign, first_num, second_num);
-      }
-      sign = expression.innerHTML;
-      sign_btn_pressed = true;
-      first_num_bool = true;
-    }
+    evaluate(expression.innerHTML);
   });
 });
 
 equal.addEventListener("click", () => {
-  screen.innerHTML = operate(sign, first_num, second_num);
+  if (sign != null) {
+    console.log("equal pressed");
+    evaluate(sign);
+  }
 });
 
-function evaluate() {
+function evaluate(exp) {
+  console.log(`evaluating ${exp}`);
   if (first_num_bool) {
     second_num = screen.innerHTML;
   } else {
@@ -78,10 +71,13 @@ function evaluate() {
     first_num_bool = true;
   }
 
-  
+  if (sign === null) {
+    sign = exp;
+  }
 
-  sign = expression.innerHTML;
-  return operate(sign, first_num, second_num);
+  first_num = operate(sign, first_num, second_num);
+  screen.innerHTML = first_num;
+  sign = exp;
 }
 
 // To do the calculations
@@ -114,7 +110,7 @@ function clear_display() {
   first_num = "";
   second_num = "";
   first_num_bool = false;
-  eval = false;
+  sign = null;
   sign_btn_pressed = false;
 }
 

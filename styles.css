@@ -110,3 +110,17 @@ button:hover{
     color: aliceblue;
     border: none;
 }
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+a:visited{
+    color: var(--accent);
+}
+
+/* TODO - support for mobile screens */

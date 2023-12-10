@@ -33,13 +33,7 @@ clear.addEventListener("click", () => {
 // for changing the sign
 
 sign_swt.addEventListener("click", () => {
-  if (first_num_bool) {
-    second_num = switch_sign(second_num);
-    screen.innerHTML = second_num;
-  } else {
-    first_num = switch_sign(first_num);
-    screen.innerHTML = first_num;
-  }
+  screen.innerHTML = switch_sign(screen.innerHTML);
 });
 
 // sign buttons pressed
@@ -63,7 +57,6 @@ equal.addEventListener("click", () => {
 });
 
 function evaluate(exp) {
-  console.log(`evaluating ${exp}`);
   if (first_num_bool) {
     second_num = screen.innerHTML;
   } else {
@@ -71,13 +64,16 @@ function evaluate(exp) {
     first_num_bool = true;
   }
 
+  console.log(
+    `evaluating ${exp} first num ${first_num} second num ${second_num}`
+  );
   if (sign === null) {
     sign = exp;
+  } else {
+    first_num = operate(sign, first_num, second_num);
+    screen.innerHTML = first_num;
+    sign = exp;
   }
-
-  first_num = operate(sign, first_num, second_num);
-  screen.innerHTML = first_num;
-  sign = exp;
 }
 
 // To do the calculations
@@ -99,7 +95,7 @@ function operate(exp, num1, num2) {
       if (num2 === 0) {
         return "(⩺_⩹)";
       }
-      return num1 / num2;
+      return (num1 / num2).toFixed(3);
     default:
       return 0;
   }

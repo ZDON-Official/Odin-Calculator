@@ -45,6 +45,11 @@ var sign_btn_pressed = false;
 
 exp_btn.forEach((expression) => {
   expression.addEventListener("click", () => {
+    // if (sign_btn_pressed) {
+    //   sign_btn_pressed = false;
+    // } else {
+    //   sign_btn_pressed = true;
+    // }
     evaluate(expression.innerHTML);
   });
 });
@@ -52,12 +57,13 @@ exp_btn.forEach((expression) => {
 equal.addEventListener("click", () => {
   if (sign != null) {
     console.log("equal pressed");
+    // sign_btn_pressed = false;
     evaluate(sign);
   }
 });
 
 function evaluate(exp) {
-  if (first_num_bool) {
+  if (first_num_bool && sign_btn_pressed === false) {
     second_num = screen.innerHTML;
   } else {
     first_num = screen.innerHTML;

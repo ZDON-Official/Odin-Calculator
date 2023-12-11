@@ -9,9 +9,11 @@ var first_num = "";
 var second_num = "";
 var first_num_bool = false;
 var sign = null;
+var solved = false;
 
 nums_btn.forEach((btn) => {
   btn.addEventListener("click", () => {
+    solved = false;
     add_to_display(btn.value);
   });
 });
@@ -63,7 +65,7 @@ equal.addEventListener("click", () => {
 });
 
 function evaluate(exp) {
-  if (first_num_bool && sign_btn_pressed === false) {
+  if (first_num_bool && solved === false) {
     second_num = screen.innerHTML;
   } else {
     first_num = screen.innerHTML;
@@ -80,6 +82,8 @@ function evaluate(exp) {
     screen.innerHTML = first_num;
     sign = exp;
   }
+
+  console.log(`solved is ${solved}`);
 }
 
 // To do the calculations
@@ -89,6 +93,7 @@ function operate(exp, num1, num2) {
 
   num1 = Number(num1);
   num2 = Number(num2);
+  solved = true;
 
   switch (exp) {
     case "+":
